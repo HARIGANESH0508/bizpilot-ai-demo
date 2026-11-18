@@ -26,12 +26,18 @@ DEMO_USERS = [
 
 
 def ensure_demo_users(session: Session) -> int:
+    """Ensure documented demo accounts always use the current configured demo password."""
     created = 0
+    current_password_hash = hash_password(settings.demo_password)
     for username, full_name, role in DEMO_USERS:
-        if session.scalar(select(User).where(User.username == username)) is None:
+        user = session.scalar(select(User).where(User.username == username))
+        if user is None:
             session.add(User(username=username, full_name=full_name, role=role,
-                             password_hash=hash_password(settings.demo_password)))
+                             password_hash=current_password_hash))
             created += 1
+        else:
+            # These are dedicated demo accounts; sync their password to Streamlit Secrets.
+            user.password_hash = current_password_hash
     session.commit()
     return created
 
