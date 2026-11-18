@@ -22,7 +22,7 @@ from app.security import can, verify_password  # noqa: E402
 from app.services import analytics, approvals, audit, invoices, llm, matching  # noqa: E402
 from app.services.agent import AgentSession, BusinessAgent  # noqa: E402
 from app.services.errors import ServiceError  # noqa: E402
-from app.services.seed import seed_demo  # noqa: E402
+from app.services.seed import ensure_demo_users, seed_demo  # noqa: E402
 
 st.set_page_config(page_title="BizPilot AI", page_icon="🧭", layout="wide")
 
@@ -49,7 +49,10 @@ CSS = """
 
 @st.cache_resource
 def _bootstrap() -> bool:
+    """Create the schema and ensure the documented demo accounts exist."""
     init_db()
+    with SessionLocal() as session:
+        ensure_demo_users(session)
     return True
 
 
