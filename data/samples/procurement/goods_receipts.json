@@ -1,0 +1,12 @@
+[
+  {"grn_number": "GRN-2026-0101", "po_number": "PO-2026-0101", "receipt_date": "2026-10-01",
+   "items": [{"product_code": "OFF-CHR-01", "description": "Ergonomic office chair", "received_quantity": 10},
+             {"product_code": "OFF-DSK-02", "description": "Standing desk 160cm", "received_quantity": 4}]},
+  {"grn_number": "GRN-2026-0102", "po_number": "PO-2026-0102", "receipt_date": "2026-10-03",
+   "items": [{"product_code": "PRN-LSR-03", "description": "Laser printer A4 mono", "received_quantity": 5},
+             {"product_code": "TNR-BLK-04", "description": "Toner cartridge black", "received_quantity": 20}]},
+  {"grn_number": "GRN-2026-0103", "po_number": "PO-2026-0103", "receipt_date": "2026-10-05",
+   "items": [{"product_code": "NET-SW-08", "description": "24-port managed switch", "received_quantity": 2}]},
+  {"grn_number": "GRN-2026-0104", "po_number": "PO-2026-0104", "receipt_date": "2026-10-06",
+   "items": [{"product_code": "PPR-A4-05", "description": "A4 copy paper 80gsm (box)", "received_quantity": 50}]}
+]

@@ -1,17 +1,8 @@
-# Python environments and caches
 .venv/
 __pycache__/
 .pytest_cache/
-*.py[cod]
-
-# Secrets and local runtime data
 .env
-.streamlit/secrets.toml
 data/*.db
 data/*.db-*
 data/uploads/
-
-# OS/editor files
-.DS_Store
-Thumbs.db
-.vscode/
+data/samples/invoices/*.pdf

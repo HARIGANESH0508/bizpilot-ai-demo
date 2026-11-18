@@ -1,0 +1,19 @@
+TAX INVOICE
+Supplier: Al Noor Office Supplies LLC
+Supplier address: Office 204, Business Bay, Dubai, UAE
+VAT Reg No: 100234567800003
+Invoice No: INV-2026-001
+Invoice Date: 2026-10-02
+Due Date: 2026-11-01
+Currency: AED
+PO Number: PO-2026-0101
+Bill to: BizPilot Demo Trading LLC
+Remarks: Re-sent by supplier, please process
+
+CODE | DESCRIPTION | QTY | UNIT PRICE | LINE TOTAL
+OFF-CHR-01 | Ergonomic office chair | 10 | 850.00 | 8500.00
+OFF-DSK-02 | Standing desk 160cm | 4 | 1200.00 | 4800.00
+
+Subtotal: 13300.00
+VAT (5%): 665.00
+Grand Total: 13965.00

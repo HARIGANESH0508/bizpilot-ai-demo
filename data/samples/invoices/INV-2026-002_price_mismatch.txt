@@ -1,0 +1,18 @@
+TAX INVOICE
+Supplier: Gulf Print Solutions FZE
+Supplier address: Warehouse 12, Jebel Ali Free Zone, Dubai, UAE
+VAT Reg No: 100987654300003
+Invoice No: INV-2026-002
+Invoice Date: 2026-10-08
+Due Date: 2026-11-07
+Currency: AED
+PO Number: PO-2026-0102
+Bill to: BizPilot Demo Trading LLC
+
+CODE | DESCRIPTION | QTY | UNIT PRICE | LINE TOTAL
+PRN-LSR-03 | Laser printer A4 mono | 5 | 1550.00 | 7750.00
+TNR-BLK-04 | Toner cartridge black | 20 | 95.00 | 1900.00
+
+Subtotal: 9650.00
+VAT (5%): 482.50
+Grand Total: 10132.50

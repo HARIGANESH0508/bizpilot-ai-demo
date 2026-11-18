@@ -1,0 +1,20 @@
+[
+  {"po_number": "PO-2026-0101", "supplier": "Al Noor Office Supplies LLC", "order_date": "2026-09-20", "currency": "AED",
+   "items": [
+     {"product_code": "OFF-CHR-01", "description": "Ergonomic office chair", "quantity": 10, "unit_price": 850.00},
+     {"product_code": "OFF-DSK-02", "description": "Standing desk 160cm", "quantity": 4, "unit_price": 1200.00}
+   ]},
+  {"po_number": "PO-2026-0102", "supplier": "Gulf Print Solutions FZE", "order_date": "2026-09-22", "currency": "AED",
+   "items": [
+     {"product_code": "PRN-LSR-03", "description": "Laser printer A4 mono", "quantity": 5, "unit_price": 1400.00},
+     {"product_code": "TNR-BLK-04", "description": "Toner cartridge black", "quantity": 20, "unit_price": 95.00}
+   ]},
+  {"po_number": "PO-2026-0103", "supplier": "Nexa Networks FZE", "order_date": "2026-09-25", "currency": "AED",
+   "items": [
+     {"product_code": "NET-SW-08", "description": "24-port managed switch", "quantity": 3, "unit_price": 2100.00}
+   ]},
+  {"po_number": "PO-2026-0104", "supplier": "Al Noor Office Supplies LLC", "order_date": "2026-09-28", "currency": "AED",
+   "items": [
+     {"product_code": "PPR-A4-05", "description": "A4 copy paper 80gsm (box)", "quantity": 50, "unit_price": 18.00}
+   ]}
+]

@@ -1,0 +1,17 @@
+TAX INVOICE
+Supplier: Nexa Networks FZE
+Supplier address: Unit 8, Dubai Silicon Oasis, Dubai, UAE
+VAT Reg No: 100555666700003
+Invoice No: INV-2026-003
+Invoice Date: 2026-10-10
+Due Date: 2026-11-09
+Currency: AED
+PO Number: PO-2026-0103
+Bill to: BizPilot Demo Trading LLC
+
+CODE | DESCRIPTION | QTY | UNIT PRICE | LINE TOTAL
+NET-SW-08 | 24-port managed switch | 3 | 2100.00 | 6300.00
+
+Subtotal: 6300.00
+VAT (5%): 315.00
+Grand Total: 6615.00

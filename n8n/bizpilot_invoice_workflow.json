@@ -1,0 +1,93 @@
+{
+  "name": "BizPilot - Invoice Received",
+  "nodes": [
+    {
+      "parameters": {"httpMethod": "POST", "path": "bizpilot/invoice-received", "responseMode": "responseNode", "options": {}},
+      "name": "Invoice Received Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "bizpilot-invoice-received"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api:8000/api/webhooks/n8n/invoice-event",
+        "sendHeaders": true,
+        "headerParameters": {"parameters": [
+          {"name": "X-Event-Id", "value": "={{ $json.body.event_id }}"},
+          {"name": "X-Webhook-Secret", "value": "={{ $env.N8N_WEBHOOK_SECRET }}"},
+          {"name": "Content-Type", "value": "application/json"}
+        ]},
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ invoice_id: $json.body.invoice_id, source: 'n8n' }) }}",
+        "options": {"timeout": 60000}
+      },
+      "name": "Run BizPilot Pipeline",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 300],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "typeValidation": "loose"},
+          "conditions": [
+            {"leftValue": "={{ $json.status }}", "rightValue": "completed", "operator": {"type": "string", "operation": "equals"}}
+          ],
+          "combinator": "and"
+        }
+      },
+      "name": "Completed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "notice": "Configure an email or Slack credential here. Message: invoice needs review or approval in BizPilot. Use the status and risk score from the payload. Never trigger payment from this workflow."
+      },
+      "name": "Notify Approver (configure)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [960, 200]
+    },
+    {
+      "parameters": {"values": {"string": [
+        {"name": "alert", "value": "BizPilot pipeline failed. Check the audit log and retry with the same event id."}
+      ]}, "options": {}},
+      "name": "Error Branch: Build Alert",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [960, 420]
+    },
+    {
+      "parameters": {"respondWith": "json", "responseBody": "={{ JSON.stringify({ received: true, event_id: $('Invoice Received Webhook').item.json.body.event_id }) }}"},
+      "name": "Acknowledge",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1200, 300]
+    }
+  ],
+  "connections": {
+    "Invoice Received Webhook": {"main": [[{"node": "Run BizPilot Pipeline", "type": "main", "index": 0}]]},
+    "Run BizPilot Pipeline": {"main": [
+      [{"node": "Completed?", "type": "main", "index": 0}],
+      [{"node": "Error Branch: Build Alert", "type": "main", "index": 0}]
+    ]},
+    "Completed?": {"main": [
+      [{"node": "Notify Approver (configure)", "type": "main", "index": 0}],
+      [{"node": "Error Branch: Build Alert", "type": "main", "index": 0}]
+    ]},
+    "Notify Approver (configure)": {"main": [[{"node": "Acknowledge", "type": "main", "index": 0}]]},
+    "Error Branch: Build Alert": {"main": [[{"node": "Acknowledge", "type": "main", "index": 0}]]}
+  },
+  "active": false,
+  "settings": {"executionOrder": "v1"},
+  "tags": ["bizpilot", "untested-in-n8n"]
+}

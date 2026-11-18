@@ -1,0 +1,17 @@
+TAX INVOICE
+Supplier: Al Noor Office Supplies LLC
+Supplier address: Office 204, Business Bay, Dubai, UAE
+VAT Reg No: 100234567800003
+Invoice No: INV-2026-005
+Invoice Date: 2026-10-12
+Due Date: 2026-11-11
+Currency: AED
+PO Number: PO-2026-0104
+Bill to: BizPilot Demo Trading LLC
+
+CODE | DESCRIPTION | QTY | UNIT PRICE | LINE TOTAL
+PPR-A4-05 | A4 copy paper 80gsm (box) | 50 | 18.00 | 900.00
+
+Subtotal: 900.00
+VAT (5%): 40.00
+Grand Total: 940.00
