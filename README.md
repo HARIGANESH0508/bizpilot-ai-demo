@@ -46,7 +46,7 @@ python scripts\init_db.py
 python scripts\seed_demo.py
 python -m pytest -q
 ```
-Expected: `61 passed` with Tesseract installed. Without it: `59 passed, 2 skipped`.
+Expected: `65 passed` with Tesseract installed. OCR-dependent tests may be skipped if Tesseract is unavailable.
 
 ### 4. Run the API and dashboard
 Terminal 1:
@@ -141,7 +141,7 @@ app/
 dashboard/        Streamlit enterprise dashboard (8 sections)
 data/samples/     Fictional suppliers, POs, GRNs and six sample invoices
 n8n/              Importable workflow JSON (see docs/API.md)
-tests/            61 automated tests
+tests/            65 automated tests
 docs/             Architecture and API reference
 scripts/          init_db.py and seed_demo.py
 ```
@@ -150,7 +150,7 @@ scripts/          init_db.py and seed_demo.py
 
 ## Implementation status
 
-**Implemented and covered by automated tests (61 tests, all passing):**
+**Implemented and covered by automated tests (65 tests, all passing):**
 - Upload validation (extension, size, magic bytes), content-addressed storage, no public file serving
 - OCR: native PDF text, scanned-PDF rendering with Tesseract, image OCR (tested against a real Tesseract install)
 - Structured extraction with per-field confidence, missing-field reporting, and Pydantic validation
