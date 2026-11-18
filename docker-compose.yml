@@ -1,0 +1,46 @@
+# Free, local stack. Ollama and n8n Community Edition run on your machine; nothing is paid or hosted.
+services:
+  api:
+    build: .
+    env_file: .env
+    environment:
+      DATABASE_URL: sqlite:////app/data/bizpilot.db
+      UPLOAD_DIR: /app/data/uploads
+      OLLAMA_URL: http://ollama:11434
+    ports: ["8000:8000"]
+    volumes: ["./data:/app/data"]
+    depends_on: [ollama]
+    restart: unless-stopped
+
+  dashboard:
+    build: .
+    env_file: .env
+    environment:
+      DATABASE_URL: sqlite:////app/data/bizpilot.db
+      UPLOAD_DIR: /app/data/uploads
+      OLLAMA_URL: http://ollama:11434
+    command: ["streamlit", "run", "dashboard/streamlit_app.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    ports: ["8501:8501"]
+    volumes: ["./data:/app/data"]
+    depends_on: [api]
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    ports: ["11434:11434"]
+    volumes: ["ollama-models:/root/.ollama"]
+    restart: unless-stopped
+
+  n8n:
+    image: n8nio/n8n:latest
+    environment:
+      N8N_SECURE_COOKIE: "false"
+      N8N_WEBHOOK_SECRET: ${N8N_WEBHOOK_SECRET:-change-this-long-random-secret}
+      GENERIC_TIMEZONE: Asia/Dubai
+    ports: ["5678:5678"]
+    volumes: ["n8n-data:/home/node/.n8n"]
+    restart: unless-stopped
+
+volumes:
+  ollama-models:
+  n8n-data:
